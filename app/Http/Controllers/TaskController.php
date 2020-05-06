@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Interfaces\TaskServiceInterface;
 use App\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    protected $taskService;
+
+    public function __construct(TaskServiceInterface $taskServiceInterface)
+    {
+        $this->taskService = $taskServiceInterface;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return "Tasks";
+        return $this->taskService->index();
     }
 
     /**
