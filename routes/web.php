@@ -17,6 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('users', 'UserController');
+    Route::resource('clients', 'ClientController');
+    Route::resource('tasks', 'TaskController');
+    Route::resource('task-schedule', 'TaskScheduleController');
+});
