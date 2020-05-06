@@ -20,4 +20,12 @@ class TaskService implements TaskServiceInterface
     {
         $this->taskRepository = $taskRepositoryInterface;
     }
+
+    /**
+     * @return \App\Task[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function index()
+    {
+        return $this->taskRepository->all();
+    }
 }

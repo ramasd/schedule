@@ -20,4 +20,12 @@ class TaskRepository implements TaskRepositoryInterface
     {
         $this->task = $task;
     }
+
+    /**
+     * @return Task[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function all()
+    {
+        return $this->task->all();
+    }
 }
